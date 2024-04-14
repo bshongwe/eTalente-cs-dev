@@ -1,28 +1,38 @@
 // Ernest B. Shongwe
-// API Endpoints
-[ApiController]
-[Route("api/[controller]")]
-public class AccountController : ControllerBase
+// Test: API Endpoints
+using System;
+using System.Collections.Generic;
+using BankingMicroservice.Controllers;
+using BankingMicroservice.Models;
+using BankingMicroservice.Services;
+using Microsoft.AspNetCore.Mvc;
+using Moq;
+using Xunit;
+
+namespace BankingMicroservice.Tests
 {
-    private readonly AccountRepository _accountRepository;
-    private readonly AuthService _authService;
-    private readonly AuditTrailRepository _auditTrailRepository;
-
-    public AccountController(AccountRepository accountRepository, AuthService authService, AuditTrailRepository auditTrailRepository)
+    public class AccountControllerTests
     {
-        _accountRepository = accountRepository;
-        _authService = authService;
-        _auditTrailRepository = auditTrailRepository;
-    }
+        [Fact]
+        public void GetAccount_Returns_OkObjectResult_With_Account()
+        {
+            // Arrange
+            var mockAccountRepository = new Mock<AccountRepository>();
+            mockAccountRepository.Setup(repo => repo.GetAccountById(It.IsAny<int>()))
+                .Returns(new Account { Id = 1, AccountNumber = "123456", Name = "John Doe", AvailableBalance = 1000 });
 
-    [HttpGet("{id}")]
-    public ActionResult<Account> GetAccount(int id)
-    {
-        var account = _accountRepository.GetAccountById(id);
-        if (account == null)
-            return NotFound();
-        return Ok(account);
-    }
+            var controller = new AccountController(mockAccountRepository.Object, null, null);
 
-    // Will implement other endpoints for retrieving account lists and creating withdrawals
+            // Act
+            var result = controller.GetAccount(1);
+
+            // Assert
+            var okResult = Assert.IsType<OkObjectResult>(result.Result);
+            var account = Assert.IsType<Account>(okResult.Value);
+            Assert.Equal(1, account.Id);
+            Assert.Equal("123456", account.AccountNumber);
+        }
+
+        // Will add more test cases for other controller methods
+    }
 }
