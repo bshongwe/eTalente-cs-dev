@@ -63,5 +63,9 @@ dotnet test
 
 
 # Development Roadmap (my notes)
--   dotnet new webapi -n eTalente-cs-dev
--   cd eTalente-cs-dev
+-   <code>dotnet new webapi -n eTalente-cs-dev</code>
+-   <code>cd eTalente-cs-dev</code>
+-   for tests:
+    -   <code>dotnet add package Microsoft.AspNetCore.Mvc.Testing --version 5.0.10</code>
+    -   <code>dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 5.0.10</code>
+
