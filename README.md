@@ -68,4 +68,6 @@ dotnet test
 -   for tests:
     -   <code>dotnet add package Microsoft.AspNetCore.Mvc.Testing --version 5.0.10</code>
     -   <code>dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 5.0.10</code>
+    -   <code>dotnet new xunit -n BankingMicroservice.Tests</code>
+
 
