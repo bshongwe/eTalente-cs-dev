@@ -19,13 +19,13 @@ This is a microservice application that exposes a secure REST API for managing b
 1. Clone the repository:
 
     ```bash
-    git clone <repository_url>
+    git clone https://github.com/bshongwe/eTalente-cs-dev.git 
     ```
 
 2. Navigate to the project directory:
 
     ```bash
-    cd BankingMicroservice
+    cd eTalente-cs-dev
     ```
 
 3. Build the project:
@@ -43,7 +43,7 @@ This is a microservice application that exposes a secure REST API for managing b
 5. Access the API documentation using Swagger by navigating to:
 
     ```
-    https://localhost:<port>/swagger
+    https://localhost:3000/swagger
     ```
 
 ## Running Tests
@@ -62,3 +62,6 @@ dotnet test
 - Swagger
 
 
+# Development Roadmap (my notes)
+-   dotnet new webapi -n eTalente-cs-dev
+-   cd eTalente-cs-dev
